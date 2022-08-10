@@ -40,7 +40,7 @@ const createUser = (req, res) => {
     password: password,
   });
 
-  res.json({ message: 'userCreated' });
+  res.status(201).json({ message: 'userCreated' });
 };
 // /signup 푸쉬할 때, postman에 넣어야 할 Body > raw / [JSON]
 // {
@@ -63,7 +63,7 @@ const createPost = (req, res) => {
     userId,
   });
 
-  res.json({ message: 'postCreated' });
+  res.status(201).json({ message: 'postCreated' });
 };
 // /posts 푸쉬할 때, postman에 넣어야 할 Body > raw / [JSON]
 // {
@@ -89,7 +89,7 @@ const getPost = (req, res) => {
       userName: user.name,
     };
   });
-  res.json({ data: postsWithUserName });
+  res.status(200).json({ data: postsWithUserName });
 };
 
 // 과제 4
@@ -108,7 +108,7 @@ const editPost = (req, res) => {
     userName: user.name,
   };
 
-  res.json({ data: { newPost } });
+  res.status(200).json({ data: { newPost } });
 };
 // /post 푸쉬할 때, postman에 넣어야 할 Body > raw / [JSON]
 // {
