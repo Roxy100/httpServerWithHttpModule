@@ -75,4 +75,21 @@ const createPost = (req, res) => {
 //   }
 // }
 
-module.exports = { createUser, createPost };
+// 과제 3
+const getPost = (req, res) => {
+  const postsWithUserName = posts.map((post) => {
+    const user = users.find((user) => post.userId === user.id);
+
+    return {
+      postId: post.id,
+      postTitle: post.title,
+      postContent: post.content,
+      userId: post.userId,
+      // 위 4줄을 ...post 라고 표현가능. (post의 property를 그대로 넣어준다는 뜻)
+      userName: user.name,
+    };
+  });
+  res.json({ data: postsWithUserName });
+};
+
+module.exports = { createUser, createPost, getPost };
