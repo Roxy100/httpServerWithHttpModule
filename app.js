@@ -92,4 +92,28 @@ const getPost = (req, res) => {
   res.json({ data: postsWithUserName });
 };
 
-module.exports = { createUser, createPost, getPost };
+// 과제 4
+const editPost = (req, res) => {
+  const { id, content } = req.body;
+
+  const post = posts.find((post) => post.id === id);
+  post.content = content;
+
+  const user = users.find((user) => post.userId === user.id);
+  const newPost = {
+    postId: post.id,
+    postTitle: post.title,
+    postContent: post.content,
+    userId: post.userId,
+    userName: user.name,
+  };
+
+  res.json({ data: { newPost } });
+};
+// /post 푸쉬할 때, postman에 넣어야 할 Body > raw / [JSON]
+// {
+//   "id" :1,
+//   "content" : "노드"
+// }
+
+module.exports = { createUser, createPost, getPost, editPost };

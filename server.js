@@ -1,6 +1,6 @@
 const http = require('http');
 const express = require('express');
-const { createUser, createPost, getPost } = require('./app');
+const { createUser, createPost, getPost, editPost } = require('./app');
 
 const app = express();
 app.use(express.json());
@@ -12,6 +12,7 @@ app.get('/', (req, res) => {
 app.post('/signup', createUser);
 app.post('/posts', createPost);
 app.get('/posts', getPost);
+app.patch('/post', editPost);
 
 const server = http.createServer(app);
 
