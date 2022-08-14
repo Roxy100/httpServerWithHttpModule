@@ -6,6 +6,7 @@ const {
   getPost,
   editPost,
   deletePost,
+  getUserPost,
 } = require('./app');
 
 const app = express();
@@ -20,6 +21,7 @@ app.post('/posts', createPost);
 app.get('/posts', getPost);
 app.patch('/post', editPost);
 app.delete('/delete', deletePost);
+app.get('/user-post', getUserPost);
 
 const server = http.createServer(app);
 

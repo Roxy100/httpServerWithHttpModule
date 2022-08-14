@@ -125,4 +125,38 @@ const deletePost = (req, res) => {
 };
 // http://localhost:8000/delete?id=1 이 주소로 send해보기!
 
-module.exports = { createUser, createPost, getPost, editPost, deletePost };
+// 과제 6
+const getUserPost = (req, res) => {
+  const userId = Number(req.query.userId);
+  const userInfo = users.find((user) => user.id === userId);
+  const postings = posts.filter((post) => post.userId === userId);
+
+  let newPostings = [];
+
+  postings.forEach((post) => {
+    let tmp = {
+      postingId: post.id,
+      postingName: post.title,
+      postingContent: post.content,
+    };
+    newPostings.push(tmp);
+  });
+
+  const newPost = {
+    userId,
+    userName: userInfo.name,
+    postings: newPostings,
+  };
+
+  res.status(200).json({ data: newPost });
+};
+// http://localhost:8000/user-post?userId=1 이 주소로 보내기!
+
+module.exports = {
+  createUser,
+  createPost,
+  getPost,
+  editPost,
+  deletePost,
+  getUserPost,
+};
