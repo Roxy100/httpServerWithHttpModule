@@ -13,7 +13,7 @@ const users = [
   },
 ];
 
-const posts = [
+let posts = [
   {
     id: 1,
     title: '간단한 HTTP API 개발 시작!',
@@ -116,4 +116,13 @@ const editPost = (req, res) => {
 //   "content" : "노드"
 // }
 
-module.exports = { createUser, createPost, getPost, editPost };
+// 과제 5
+const deletePost = (req, res) => {
+  const newId = Number(req.query.id);
+  const result = posts.filter((post) => post.id !== newId);
+  posts = result;
+  res.status(200).json({ data: posts });
+};
+// http://localhost:8000/delete?id=1 이 주소로 send해보기!
+
+module.exports = { createUser, createPost, getPost, editPost, deletePost };
